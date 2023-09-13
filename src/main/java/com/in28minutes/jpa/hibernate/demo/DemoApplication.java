@@ -1,7 +1,10 @@
 package com.in28minutes.jpa.hibernate.demo;
 
+
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import com.in28minutes.jpa.hibernate.demo.repository.CourseRepository;
+import com.in28minutes.jpa.hibernate.demo.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,10 @@ public class DemoApplication implements CommandLineRunner {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private CourseRepository repository;
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
@@ -22,11 +28,8 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        var course = repository.findById(10001L);
-        logger.info("Course 10001 -> {}", course);
-
-        repository.deleteById(10003L);
-        repository.save(new Course("Microservices in 28 Steps"));
-        repository.playWithEntityManager();
+        Student student = new Student("Jack");
+        Course course = new Course("Microservices in 100 Steps");
+        studentRepository.insertStudentAndCourse(student, course);
     }
 }

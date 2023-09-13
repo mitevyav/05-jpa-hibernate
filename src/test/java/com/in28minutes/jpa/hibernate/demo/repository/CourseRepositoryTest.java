@@ -1,6 +1,9 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
+import com.in28minutes.jpa.hibernate.demo.entity.Review;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,12 @@ class CourseRepositoryTest {
 
     @Autowired
     CourseRepository repository;
+
+    @Autowired
+    EntityManager entityManager;
+
+    @Autowired
+    ReviewRepository reviewRepository;
 
     @Test
     void findById_basic() {
@@ -49,5 +58,26 @@ class CourseRepositoryTest {
     @DirtiesContext
     void playWithEntityManager() {
         repository.playWithEntityManager();
+    }
+
+    @Test
+    @Transactional
+    void retrieveReviewsForCourse() {
+        var course = repository.findById(10003L);
+        logger.info("Reviews -> {}", course.getReviews());
+    }
+
+    @Test
+    void retrieveCourseForAReview() {
+        var review = entityManager.find(Review.class, 50001L);
+        logger.info("Course from review -> {}", review.getCourse());
+    }
+
+
+    @Test
+    @Transactional
+    void retrieveCourseForAReviewCrud() {
+        var review = reviewRepository.findById(50001L).get();
+        logger.info("Course from review -> {}", review.getCourse().getReviews());
     }
 }
