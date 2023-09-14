@@ -10,7 +10,7 @@ values (40001, 'E1234567');
 insert into passport(id, number)
 values (40002, 'N9876533');
 insert into passport(id, number)
-values (40003, 'L1894834');
+values (40003, 'L9894834');
 
 insert into student(id, name, passport_id)
 values (20001, 'Ranga', 40001);
@@ -35,3 +35,4 @@ insert into student_course(student_id, course_id)
 values (20003, 10001);
 insert into student_course(student_id, course_id)
 values (20001, 10003);
+

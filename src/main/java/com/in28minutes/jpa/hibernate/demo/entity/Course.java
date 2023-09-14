@@ -92,7 +92,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "\n\nCourse{" +
+        return "Course{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
