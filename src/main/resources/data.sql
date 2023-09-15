@@ -4,6 +4,18 @@ insert into course_details(id, full_name, created_date, last_updated_date)
 values (10002, 'JDBC in 100 Steps', now(), now());
 insert into course_details(id, full_name, created_date, last_updated_date)
 values (10003, 'DevOps in 50 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10004, 'Project Reactor in 50 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10005, 'Lambdas in 100 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10006, 'RabbitMQ in 50 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10007, 'Kafka in 50 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10008, 'REST in 100 Steps', now(), now());
+insert into course_details(id, full_name, created_date, last_updated_date)
+values (10009, 'Microservices in 50 Steps', now(), now());
 
 insert into passport(id, number)
 values (40001, 'E1234567');
