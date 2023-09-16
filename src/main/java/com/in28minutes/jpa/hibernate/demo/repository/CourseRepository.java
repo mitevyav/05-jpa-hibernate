@@ -2,6 +2,7 @@ package com.in28minutes.jpa.hibernate.demo.repository;
 
 import com.in28minutes.jpa.hibernate.demo.entity.Course;
 import com.in28minutes.jpa.hibernate.demo.entity.Review;
+import com.in28minutes.jpa.hibernate.demo.entity.ReviewRating;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -70,8 +71,8 @@ public class CourseRepository {
         var course = findById(10003L);
         logger.info("Course reviews -> {}", course.getReviews());
 
-        var review1 = new Review("5", "Great Hands-on Stuff.");
-        var review2 = new Review("5", "Hatsoff.");
+        var review1 = new Review(ReviewRating.FIVE, "Great Hands-on Stuff.");
+        var review2 = new Review(ReviewRating.FIVE, "Hatsoff.");
 
         review1.setCourse(course);
         course.addReview(review1);

@@ -1,5 +1,6 @@
 package com.in28minutes.jpa.hibernate.demo.repository;
 
+import com.in28minutes.jpa.hibernate.demo.entity.Address;
 import com.in28minutes.jpa.hibernate.demo.entity.Passport;
 import com.in28minutes.jpa.hibernate.demo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -25,6 +26,17 @@ public class StudentRepositoryTest {
     @Transactional
     void retrieveStudentAndPassportDetails() {
         Student student = entityManager.find(Student.class, 20001L);
+        logger.info("Student -> {}", student);
+        Passport passport = student.getPassport();
+        logger.info("Passport -> {}", passport);
+    }
+
+    @Test
+    @Transactional
+    void setAddressDetails() {
+        Student student = entityManager.find(Student.class, 20001L);
+        student.setAddress(new Address("No 101", "Some Street", "Hyderabad"));
+        entityManager.flush();
         logger.info("Student -> {}", student);
         Passport passport = student.getPassport();
         logger.info("Passport -> {}", passport);

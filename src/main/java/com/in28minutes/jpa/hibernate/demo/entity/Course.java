@@ -3,7 +3,9 @@ package com.in28minutes.jpa.hibernate.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import java.util.List;
         @NamedQuery(name = "query_get_all_courses", query = "Select c From Course c"),
         @NamedQuery(name = "query_get_100_Steps_courses", query = "Select c From Course c where name like '%100 Steps'")
 })
+@SQLDelete(sql = "update course_details set is_deleted=true where id=?")
+@Where(clause = "is_deleted = false")
 public class Course {
 
     @Id
@@ -40,6 +44,13 @@ public class Course {
 
     @UpdateTimestamp
     private LocalDateTime lastUpdatedDate;
+
+    private boolean isDeleted;
+
+    @PreRemove
+    private void preRemove() {
+        isDeleted = true;
+    }
 
     public Course() {
     }

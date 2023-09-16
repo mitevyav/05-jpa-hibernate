@@ -19,7 +19,7 @@ class NativeQueriesTest {
 
     @Test
     void native_queries_basic() {
-        Query query = entityManager.createNativeQuery("SELECT * FROM course_details", Course.class);
+        Query query = entityManager.createNativeQuery("SELECT * FROM course_details WHERE is_delete=0", Course.class);
         var resultList = query.getResultList();
         logger.info("Native query all courses -> {}", resultList);
     }

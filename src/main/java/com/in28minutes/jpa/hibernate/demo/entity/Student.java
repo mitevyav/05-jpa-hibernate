@@ -18,6 +18,9 @@ public class Student {
     @OneToOne(fetch = FetchType.LAZY)
     private Passport passport;
 
+    @Embedded
+    private Address address;
+
     @ManyToMany
     @JoinTable(
             name = "student_course",
@@ -65,6 +68,14 @@ public class Student {
 
     public void removeCourse(Course course) {
         courses.remove(course);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
